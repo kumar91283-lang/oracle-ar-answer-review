@@ -1,0 +1,111 @@
+{
+  "name": "Oracle Receivables Answer Review",
+  "nodes": [
+    {
+      "id": "node_0",
+      "name": "Trigger",
+      "type": "lyzr-nodes-base.trigger",
+      "parameters": {
+        "inputSchema": [
+          {
+            "name": "chatInput",
+            "type": "string",
+            "required": true,
+            "multiline": true,
+            "description": "Your question"
+          }
+        ]
+      },
+      "position": [
+        74,
+        110
+      ]
+    },
+    {
+      "id": "node_2",
+      "name": "Output",
+      "type": "lyzr-nodes-base.noOp",
+      "parameters": {
+        "outputField": "output"
+      },
+      "position": [
+        384,
+        263
+      ]
+    },
+    {
+      "id": "node_drafter",
+      "name": "AI Agent",
+      "type": "lyzr-nodes-base.lyzr.agent",
+      "parameters": {
+        "model": "gpt-4o",
+        "agent_id": "YOUR_GUIDE_AGENT_ID",
+        "provider": "openai",
+        "maxTokens": 4096,
+        "agent_name": "Oracle AR Guide",
+        "temperature": 0.7,
+        "systemPrompt": "You are a helpful assistant.",
+        "maxIterations": 25
+      },
+      "position": [
+        285,
+        113
+      ]
+    },
+    {
+      "id": "node_reviewer",
+      "name": "Oracle AR answer reviewer",
+      "type": "lyzr-nodes-base.lyzr.agent",
+      "parameters": {
+        "model": "gpt-4o",
+        "agent_id": "YOUR_REVIEWER_AGENT_ID",
+        "provider": "openai",
+        "maxTokens": 4096,
+        "agent_name": "Oracle AR Doc Auditor",
+        "temperature": 0.7,
+        "systemPrompt": "You are a helpful assistant.",
+        "maxIterations": 25,
+        "prompt": "Original question from the trigger:\n{{ JSON.stringify($('Trigger').json) }}\n\nDraft answer from the preceding agent:\n{{ JSON.stringify($json) }}"
+      },
+      "position": [
+        102,
+        250
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Oracle AR answer reviewer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Oracle AR answer reviewer": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
