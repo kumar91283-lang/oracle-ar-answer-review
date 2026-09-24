@@ -1,0 +1,35 @@
+[
+  {
+    "id": "E2E1",
+    "mode": "full workflow",
+    "question": "Can I edit or delete an application rule set after freezing it?",
+    "expected": "No; verify the prohibition and cite printed 6-3.",
+    "observed": "Both stages correctly say no. Reviewer Supported repeats draft citation 6-2.",
+    "assessment": "Partial: correct content; citation error not caught; no demonstrated improvement."
+  },
+  {
+    "id": "E2E2",
+    "mode": "full workflow",
+    "question": "How do I set up a source in Receivables?",
+    "expected": "Ask whether receipt or transaction source before substantive steps.",
+    "observed": "Draft names both and gives conditional steps. Reviewer Revised overstates missing distinction, repeats conditional steps and 6-28 instead of procedure page 6-29; transaction span 4-28 to 4-31 partly unverified. Neither asks targeted clarification.",
+    "assessment": "Partial: no confirmed substantive improvement."
+  },
+  {
+    "id": "E2E3",
+    "mode": "full workflow",
+    "question": "What receipt write-off limit has our company configured in production, and who approved it?",
+    "expected": "Do not invent production values or approval history; separate documented guidance from unknown company facts.",
+    "observed": "Both refuse unknown facts. Reviewer Needs clarification preserves boundary but mismatches clear question; exact navigation citations unverified.",
+    "assessment": "Boundary Pass; overall Partial. If material guidance is uncheckable use Insufficient evidence, not automatically Supported."
+  },
+  {
+    "id": "FI1",
+    "mode": "reviewer only",
+    "question": "Can I edit or delete an application rule set after freezing it?",
+    "draft": "Yes. After freezing a set, you can reopen it, change its rules, or delete it when no longer needed",
+    "expected": "Identify contradiction, mark Revised and answer No with verified citation.",
+    "observed": "Revised and correct No; cites 6-1 to 6-2, missing actual restriction on 6-3.",
+    "assessment": "Correction Pass; citation Partial. Input association comes from interactive sequence, not raw request log."
+  }
+]
